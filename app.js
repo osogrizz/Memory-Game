@@ -1,6 +1,7 @@
 let list = ['face', 'face', 'wb_sunny', 'wb_sunny', 'beach_access', 'beach_access', 'star_border', 'star_border', 'filter_hdr', 'filter_hdr', 'local_florist', 'local_florist', 'flash_on', 'flash_on', 'palette', 'palette'];
 const tile = document.getElementsByClassName('square');
 const gameBoard = document.getElementById('game-board');
+const timeElapsed = document.getElementById('timer');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -33,6 +34,7 @@ for (var i = 0; i < list.length; i++) {
 document.addEventListener('click', function(e) {
   if ( e.target.classList.contains('square') ) {
     // console.log(showTile);
+    timeElapsed.style.visibility = 'visible';
     let showTile = e.target.firstChild
     showTile.style.visibility = 'visible';
   };
