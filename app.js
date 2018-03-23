@@ -42,19 +42,24 @@ document.addEventListener('click', function(e) {
     showTile.style.visibility = 'visible';
 
     openCards.push(selected);
-    console.log(openCards); 
+    console.log(openCards);
 
-    if (openCards.length > 1) {
+    setTimeout(() => {
+      if (openCards.length > 1) {
 
-      if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
-        console.log('winner!');
-        openCards = [];
+        if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
+          console.log('winner!');
+          openCards = [];
+        }
+        else {
+          openCards[0].firstChild.style.visibility = 'hidden';
+          openCards[1].firstChild.style.visibility = 'hidden';
+          openCards = [];
+        }
       }
-      else {
-        openCards[0].firstChild.style.visibility = 'hidden';
-        openCards[1].firstChild.style.visibility = 'hidden';
-        openCards = [];
-      }
-    }
+
+    }, 2000)
+
+
   };
 }, false);
