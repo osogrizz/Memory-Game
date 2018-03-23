@@ -61,25 +61,44 @@ main {
 }
 
 #game-board {
+  padding-top: 20px;
   height: 500px;
   width: 450px;
   background-color: rgba(25, 25, 25, 0.7);
   border-radius: 5%;
-  display: flex;
-  justify-content: center;
   margin-bottom: 40px;
   border-collapse: collapse;
+  /* display: flex; */
+
 }
+/* .row {
+  display: flex;
+  justify-content: center;
+} */
 
 .square {
   width: 80px;
   height: 80px;
   border-radius: 5%;
-  margin: 10px 10px;
-  margin-top: 20px;
+  margin: 10px 10px 10px 20px;
   background-color: skyblue;
+  display: inline-flex;
 }
 
+/* .selected {
+
+} */
+
+.square i {
+  /* margin: auto; */
+  height: 60px;
+  width: 60px;
+  font-size: 80px;
+}
+
+/* .material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+} */
 
 /*
 responsive styling
