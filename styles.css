@@ -37,8 +37,9 @@ header h1 {
 }
 
 #timer {
-  margin-right: 20px;
+  margin-right: 120px;
   text-transform: uppercase;
+  visibility: hidden;
   /* display: none; */
 }
 

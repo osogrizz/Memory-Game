@@ -32,8 +32,8 @@ for (var i = 0; i < list.length; i++) {
 
 document.addEventListener('click', function(e) {
   if ( e.target.classList.contains('square') ) {
+    // console.log(showTile);
     let showTile = e.target.firstChild
-    console.log(showTile);
     showTile.style.visibility = 'visible';
   };
 }, false);
