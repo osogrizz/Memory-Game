@@ -67,9 +67,7 @@ main {
   background-color: rgba(25, 25, 25, 0.7);
   border-radius: 5%;
   margin-bottom: 40px;
-  border-collapse: collapse;
-  /* display: flex; */
-
+  /* border-collapse: collapse; */
 }
 /* .row {
   display: flex;
@@ -96,9 +94,9 @@ main {
   font-size: 80px;
 }
 
-/* .material-icons.md-light {
-  color: rgba(255, 255, 255, 1);
-} */
+.material-icons {
+  visibility: hidden;
+}
 
 /*
 responsive styling
