@@ -39,7 +39,7 @@ for (var i = 0; i < list.length; i++) {
 let openCards = [];
 let moves = 0;
 let timer = 0;
-
+let winState = 0;
 document.addEventListener('click', function(e) {
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
@@ -53,18 +53,24 @@ document.addEventListener('click', function(e) {
     // console.log(openCards);
 
     setTimeout(() => {
+
       if (openCards.length > 1) {
 
         if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
           // console.log('winner!');
+          ++winState;
+          console.log('winState =', winState);
           openCards = [];
+          if (winState === 8) {
+            alert('You Win!!!');
+          }
         }
         else {
           openCards[0].firstChild.style.visibility = 'hidden';
           openCards[1].firstChild.style.visibility = 'hidden';
           openCards = [];
         }
-        moves += 1;
+        ++moves;
         totalMoves.innerHTML = `Moves: ${moves}`;
 
         if (moves == 9 ) {
