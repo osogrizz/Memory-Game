@@ -59,7 +59,7 @@ document.addEventListener('click', function(e) {
         if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
           // console.log('winner!');
           ++winState;
-          console.log('winState =', winState);
+          // console.log('winState =', winState);
           openCards = [];
           if (winState === 8) {
             alert('You Win!!!');
@@ -73,11 +73,11 @@ document.addEventListener('click', function(e) {
         ++moves;
         totalMoves.innerHTML = `Moves: ${moves}`;
 
-        if (moves == 9 ) {
+        if (moves == 12 ) {
           stars.removeChild(star3);
-        } else if (moves == 19) {
+        } else if (moves == 25) {
           stars.removeChild(star2);
-        } else if (moves == 28) {
+        } else if (moves == 35) {
           stars.removeChild(star1);
         }
 
