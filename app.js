@@ -9,6 +9,7 @@ const star2 = document.getElementById('star2');
 const star3 = document.getElementById('star3');
 
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -25,6 +26,7 @@ function shuffle(array) {
 }
 shuffle(list);
 
+
 for (var i = 0; i < list.length; i++) {
   let $square = document.createElement('div');
   $square.classList.add('square');
@@ -36,10 +38,30 @@ for (var i = 0; i < list.length; i++) {
   // console.log($tile);
 }
 
+  let initMin = 0;
+  let initSec = 0;
+
+  let timeInterval = setInterval(function() {
+    let sec = initSec % 60;
+    let min = parseInt(initSec / 60);
+
+    timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
+    initSec += 1;
+    console.log(timeElapsed.innerHTML);
+
+  },1000);
+
+
+function stopTimer() {
+  clearInterval(timeInterval);
+}
+
+
 let openCards = [];
 let moves = 0;
 let timer = 0;
 let winState = 0;
+
 document.addEventListener('click', function(e) {
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
@@ -51,6 +73,12 @@ document.addEventListener('click', function(e) {
 
     openCards.push(selected);
     // console.log(openCards);
+    ++timer;
+    console.log(timer);
+    if (timer === 1) {
+      timeInterval;
+
+    };
 
     setTimeout(() => {
 
@@ -62,7 +90,8 @@ document.addEventListener('click', function(e) {
           // console.log('winState =', winState);
           openCards = [];
           if (winState === 8) {
-            alert('You Win!!!');
+            stopTimer();
+            console.log('You Win!!!');
           }
         }
         else {
@@ -82,12 +111,7 @@ document.addEventListener('click', function(e) {
         }
 
       }
-
     }, 2000);
-
-    // if () {
-    //
-    // }
 
 
   };
