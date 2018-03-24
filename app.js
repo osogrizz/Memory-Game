@@ -3,10 +3,15 @@ const tile = document.getElementsByClassName('square');
 const gameBoard = document.getElementById('game-board');
 const timeElapsed = document.getElementById('timer');
 const totalMoves = document.getElementById('moves');
+const stars = document.getElementById('stars');
+const star1 = document.getElementById('star1');
+const star2 = document.getElementById('star2');
+const star3 = document.getElementById('star3');
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -34,6 +39,7 @@ for (var i = 0; i < list.length; i++) {
 let openCards = [];
 let moves = 0;
 let timer = 0;
+
 document.addEventListener('click', function(e) {
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
@@ -44,13 +50,13 @@ document.addEventListener('click', function(e) {
     showTile.style.visibility = 'visible';
 
     openCards.push(selected);
-    console.log(openCards);
+    // console.log(openCards);
 
     setTimeout(() => {
       if (openCards.length > 1) {
 
         if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
-          console.log('winner!');
+          // console.log('winner!');
           openCards = [];
         }
         else {
@@ -60,7 +66,15 @@ document.addEventListener('click', function(e) {
         }
         moves += 1;
         totalMoves.innerHTML = `Moves: ${moves}`;
-        console.log('moves =', moves);
+
+        if (moves == 9 ) {
+          stars.removeChild(star3);
+        } else if (moves == 19) {
+          stars.removeChild(star2);
+        } else if (moves == 28) {
+          stars.removeChild(star1);
+        }
+
       }
 
     }, 2000);

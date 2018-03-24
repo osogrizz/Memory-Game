@@ -55,6 +55,18 @@ header h1 {
   margin-left: 40px;
 }
 
+#stars {
+  display: flex;
+  justify-content: center;
+}
+
+#stars i {
+  width: 24px;
+  margin: 0;
+  padding: 0;
+  visibility: visible;
+  color: gold;
+}
 
 
 /*
