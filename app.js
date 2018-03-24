@@ -2,6 +2,7 @@ let list = ['face', 'face', 'wb_sunny', 'wb_sunny', 'beach_access', 'beach_acces
 const tile = document.getElementsByClassName('square');
 const gameBoard = document.getElementById('game-board');
 const timeElapsed = document.getElementById('timer');
+const totalMoves = document.getElementById('moves');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -31,8 +32,9 @@ for (var i = 0; i < list.length; i++) {
 }
 
 let openCards = [];
+let moves = 0;
+let timer = 0;
 document.addEventListener('click', function(e) {
-
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
     // console.log(showTile);
@@ -56,9 +58,16 @@ document.addEventListener('click', function(e) {
           openCards[1].firstChild.style.visibility = 'hidden';
           openCards = [];
         }
+        moves += 1;
+        totalMoves.innerHTML = `Moves: ${moves}`;
+        console.log('moves =', moves);
       }
 
-    }, 2000)
+    }, 2000);
+
+    // if () {
+    //
+    // }
 
 
   };
