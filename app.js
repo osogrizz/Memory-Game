@@ -7,6 +7,10 @@ const stars = document.getElementById('stars');
 const star1 = document.getElementById('star1');
 const star2 = document.getElementById('star2');
 const star3 = document.getElementById('star3');
+const modal = document.getElementById('modal-container');
+const totalTime = document.getElementById('total-time');
+const totalMovesModal = document.getElementById('total-moves');
+const starRating = document.getElementById('star-rating');
 
 let openCards = [];
 let moves = 0;
@@ -80,8 +84,11 @@ function startTime() {
 }
 
 function winStateHandler() {
-  console.log('You Win!!!');
   clearInterval(timeInterval);
+  totalTime.innerHTML = `total time: ${timeElapsed.innerHTML}`;
+  totalMovesModal.innerHTML = `total moves: ${totalMoves.innerHTML}`;
+  starRating.innerHTML = `star rating: ${stars.innerHTML}`;
+  modal.style.display = 'contents';
 };
 
 function timeHandler() {

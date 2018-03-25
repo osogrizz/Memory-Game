@@ -116,5 +116,22 @@ main {
 }
 
 /*
+Modal style rules
+*/
+
+#modal-container {
+  display: none;
+  text-align: center;
+}
+
+#modal-container .material-icons {
+  width: 24px;
+  margin: 0;
+  padding: 0;
+  visibility: visible;
+  color: gold;
+}
+
+/*
 responsive styling
 */
