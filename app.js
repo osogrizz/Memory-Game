@@ -1,6 +1,7 @@
 let list = ['face', 'face', 'wb_sunny', 'wb_sunny', 'beach_access', 'beach_access', 'star_border', 'star_border', 'filter_hdr', 'filter_hdr', 'local_florist', 'local_florist', 'flash_on', 'flash_on', 'palette', 'palette'];
 const tile = document.getElementsByClassName('square');
 const gameBoard = document.getElementById('game-board');
+const restart = document.getElementById('restart-btn');
 const timeElapsed = document.getElementById('timer');
 const totalMoves = document.getElementById('moves');
 const stars = document.getElementById('stars');
@@ -38,24 +39,30 @@ for (var i = 0; i < list.length; i++) {
   // console.log($tile);
 }
 
-  let initMin = 0;
-  let initSec = 0;
 
-  let timeInterval = setInterval(function() {
-    let sec = initSec % 60;
-    let min = parseInt(initSec / 60);
+let initMin = 0;
+let initSec = 0;
 
-    timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
-    initSec += 1;
-    console.log(timeElapsed.innerHTML);
+function timeHandler() {
+  let sec = initSec % 60;
+  let min = parseInt(initSec / 60);
 
-  },1000);
+  timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
+  initSec += 1;
+  console.log(timeElapsed.innerHTML);
+};
 
+function cardHandler(e) {
 
-function stopTimer() {
-  clearInterval(timeInterval);
 }
 
+function winStateHandler() {
+
+}
+
+function newGame() {
+
+}
 
 let openCards = [];
 let moves = 0;
@@ -63,6 +70,8 @@ let timer = 0;
 let winState = 0;
 
 document.addEventListener('click', function(e) {
+  cardHandler();
+
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
     // console.log(showTile);
@@ -70,14 +79,12 @@ document.addEventListener('click', function(e) {
 
     let showTile = e.target.firstChild;
     showTile.style.visibility = 'visible';
-
     openCards.push(selected);
-    // console.log(openCards);
-    ++timer;
-    console.log(timer);
-    if (timer === 1) {
-      timeInterval;
 
+    ++timer;
+
+    if (timer === 1) {
+      let timeInterval = setInterval(function() { timeHandler() },1000);
     };
 
     setTimeout(() => {
@@ -90,7 +97,7 @@ document.addEventListener('click', function(e) {
           // console.log('winState =', winState);
           openCards = [];
           if (winState === 8) {
-            stopTimer();
+            winStateHandler();
             console.log('You Win!!!');
           }
         }
@@ -112,6 +119,7 @@ document.addEventListener('click', function(e) {
 
       }
     }, 2000);
+
 
 
   };
