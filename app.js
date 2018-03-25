@@ -1,4 +1,3 @@
-let list = ['face', 'face', 'wb_sunny', 'wb_sunny', 'beach_access', 'beach_access', 'star_border', 'star_border', 'filter_hdr', 'filter_hdr', 'local_florist', 'local_florist', 'flash_on', 'flash_on', 'palette', 'palette'];
 const tile = document.getElementsByClassName('square');
 const gameBoard = document.getElementById('game-board');
 const restart = document.getElementById('restart-btn');
@@ -16,6 +15,17 @@ let winState = 0;
 
 let initMin = 0;
 let initSec = 0;
+
+let list = ['face', 'face',
+            'wb_sunny', 'wb_sunny',
+            'beach_access', 'beach_access',
+            'star_border', 'star_border',
+            'filter_hdr', 'filter_hdr',
+            'local_florist', 'local_florist',
+            'flash_on', 'flash_on',
+             'palette', 'palette'
+           ];
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -46,8 +56,10 @@ function setCards() {
 };
 setCards();
 
-document.addEventListener('click', function(e) {
 
+
+document.addEventListener('click', function(e) {
+  ++timer;
 
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
@@ -56,53 +68,47 @@ document.addEventListener('click', function(e) {
     let showTile = e.target.firstChild;
     showTile.style.visibility = 'visible';
     openCards.push(selected);
-
-
   }
   cardHandler();
-  timeHandler();
 
 }, false);
 
+function startTime() {
+  if (timer === 1) {
+     timeInterval = setInterval(function() { timeHandler() },1000);
+  };
+}
+
 function winStateHandler() {
   console.log('You Win!!!');
+  clearInterval(timeInterval);
 };
 
 function timeHandler() {
-  ++timer;
-  if (timer === 1) {
-    let timeInterval = setInterval(function() { timeHandler() },1000);
-  }
-  if (winState === 8) {
-    clearInterval(timeInterval);
-  }
-
   let sec = initSec % 60;
   let min = parseInt(initSec / 60);
 
   timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
   initSec += 1;
-  // console.log(timeElapsed.innerHTML);
 };
 
 function cardHandler(e) {
-
+  startTime();
   setTimeout(() => {
+
     if (openCards.length > 1) {
       if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
         ++winState;
         openCards = [];
-
         if (winState === 8) {
           winStateHandler();
-          // call clearInterval()
-
-        }
+        };
     } else {
         openCards[0].firstChild.style.visibility = 'hidden';
         openCards[1].firstChild.style.visibility = 'hidden';
         openCards = [];
-      }
+      };
+
       ++moves;
       totalMoves.innerHTML = `Moves: ${moves}`;
 
@@ -113,6 +119,6 @@ function cardHandler(e) {
       } else if (moves == 35) {
         stars.removeChild(star1);
       }
-    }
+    };
   }, 2000);
 }
