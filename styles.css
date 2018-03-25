@@ -122,6 +122,8 @@ Modal style rules
 #modal-container {
   display: none;
   text-align: center;
+  border-radius: 5%;
+  border: 1px solid black;
 }
 
 #modal-container .material-icons {
@@ -130,6 +132,11 @@ Modal style rules
   padding: 0;
   visibility: visible;
   color: gold;
+}
+
+#modal-form {
+  display: flex;
+  justify-content: center;
 }
 
 /*
