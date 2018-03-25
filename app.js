@@ -9,7 +9,13 @@ const star1 = document.getElementById('star1');
 const star2 = document.getElementById('star2');
 const star3 = document.getElementById('star3');
 
+let openCards = [];
+let moves = 0;
+let timer = 0;
+let winState = 0;
 
+let initMin = 0;
+let initSec = 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -27,100 +33,86 @@ function shuffle(array) {
 }
 shuffle(list);
 
-
-for (var i = 0; i < list.length; i++) {
-  let $square = document.createElement('div');
-  $square.classList.add('square');
-  let $tile = document.createElement('i');
-  $tile.classList.add('material-icons');
-  $tile.innerHTML = list[i];
-  $square.append($tile);
-  gameBoard.append($square);
-  // console.log($tile);
-}
-
-
-let initMin = 0;
-let initSec = 0;
-
-function timeHandler() {
-  let sec = initSec % 60;
-  let min = parseInt(initSec / 60);
-
-  timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
-  initSec += 1;
-  console.log(timeElapsed.innerHTML);
+function setCards() {
+  for (var i = 0; i < list.length; i++) {
+    let $square = document.createElement('div');
+    $square.classList.add('square');
+    let $tile = document.createElement('i');
+    $tile.classList.add('material-icons');
+    $tile.innerHTML = list[i];
+    $square.append($tile);
+    gameBoard.append($square);
+  };
 };
-
-function cardHandler(e) {
-
-}
-
-function winStateHandler() {
-
-}
-
-function newGame() {
-
-}
-
-let openCards = [];
-let moves = 0;
-let timer = 0;
-let winState = 0;
+setCards();
 
 document.addEventListener('click', function(e) {
-  cardHandler();
+
 
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
-    // console.log(showTile);
     timeElapsed.style.visibility = 'visible';
 
     let showTile = e.target.firstChild;
     showTile.style.visibility = 'visible';
     openCards.push(selected);
 
-    ++timer;
 
-    if (timer === 1) {
-      let timeInterval = setInterval(function() { timeHandler() },1000);
-    };
+  }
+  cardHandler();
+  timeHandler();
 
-    setTimeout(() => {
-
-      if (openCards.length > 1) {
-
-        if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
-          // console.log('winner!');
-          ++winState;
-          // console.log('winState =', winState);
-          openCards = [];
-          if (winState === 8) {
-            winStateHandler();
-            console.log('You Win!!!');
-          }
-        }
-        else {
-          openCards[0].firstChild.style.visibility = 'hidden';
-          openCards[1].firstChild.style.visibility = 'hidden';
-          openCards = [];
-        }
-        ++moves;
-        totalMoves.innerHTML = `Moves: ${moves}`;
-
-        if (moves == 12 ) {
-          stars.removeChild(star3);
-        } else if (moves == 25) {
-          stars.removeChild(star2);
-        } else if (moves == 35) {
-          stars.removeChild(star1);
-        }
-
-      }
-    }, 2000);
-
-
-
-  };
 }, false);
+
+function winStateHandler() {
+  console.log('You Win!!!');
+};
+
+function timeHandler() {
+  ++timer;
+  if (timer === 1) {
+    let timeInterval = setInterval(function() { timeHandler() },1000);
+  }
+  if (winState === 8) {
+    clearInterval(timeInterval);
+  }
+
+  let sec = initSec % 60;
+  let min = parseInt(initSec / 60);
+
+  timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
+  initSec += 1;
+  // console.log(timeElapsed.innerHTML);
+};
+
+function cardHandler(e) {
+
+  setTimeout(() => {
+    if (openCards.length > 1) {
+      if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
+        ++winState;
+        openCards = [];
+
+        if (winState === 8) {
+          winStateHandler();
+          // call clearInterval()
+
+        }
+    } else {
+        openCards[0].firstChild.style.visibility = 'hidden';
+        openCards[1].firstChild.style.visibility = 'hidden';
+        openCards = [];
+      }
+      ++moves;
+      totalMoves.innerHTML = `Moves: ${moves}`;
+
+      if (moves == 12 ) {
+        stars.removeChild(star3);
+      } else if (moves == 25) {
+        stars.removeChild(star2);
+      } else if (moves == 35) {
+        stars.removeChild(star1);
+      }
+    }
+  }, 2000);
+}
