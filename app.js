@@ -85,17 +85,17 @@ function startTime() {
 
 function winStateHandler() {
   clearInterval(timeInterval);
-  totalTime.innerHTML = `total time: ${timeElapsed.innerHTML}`;
-  totalMovesModal.innerHTML = `total moves: ${totalMoves.innerHTML}`;
+  totalTime.innerHTML = `total ${timeElapsed.innerHTML}`;
+  totalMovesModal.innerHTML = `total ${totalMoves.innerHTML}`;
   starRating.innerHTML = `star rating: ${stars.innerHTML}`;
-  modal.style.display = 'contents';
+  modal.style.display = 'block';
 };
 
 function timeHandler() {
   let sec = initSec % 60;
   let min = parseInt(initSec / 60);
 
-  timeElapsed.innerHTML = `time elapsed: ${min}:${sec}`;
+  timeElapsed.innerHTML = `time: ${min}:${sec}`;
   initSec += 1;
 };
 
