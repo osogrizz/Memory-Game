@@ -73,13 +73,11 @@ document.addEventListener('click', function(e) {
 
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
-    // timeElapsed.style.visibility = 'visible';
+    timeElapsed.style.visibility = 'visible';
 
     let showTile = e.target.firstChild;
-    // showTile.style.visibility = 'visible';
     showTile.parentNode.classList.add('active');
     showTile.parentNode.parentNode.classList.add('active');
-    // console.log(showTile);
     openCards.push(selected);
   }
   cardHandler();
@@ -123,8 +121,6 @@ function cardHandler(e) {
           winStateHandler();
         };
     } else {
-        // openCards[0].firstChild.style.visibility = 'hidden';
-        // openCards[1].firstChild.style.visibility = 'hidden';
         openCards[0].classList.remove('active');
         openCards[0].parentNode.classList.remove('active');
 
