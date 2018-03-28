@@ -49,13 +49,19 @@ shuffle(list);
 
 function setCards() {
   for (var i = 0; i < list.length; i++) {
+    let $flipContainer = document.createElement('div');
+    $flipContainer.classList.add('flip-container');
     let $square = document.createElement('div');
-    // $square.classList.add('square', 'front');
+    $square.classList.add('square', 'flip');
+    let $frontTile = document.createElement('div');
+    $frontTile.classList.add('front');
     let $tile = document.createElement('i');
-    // $tile.classList.add('material-icons', 'back');
+    $tile.classList.add('material-icons', 'back');
     $tile.innerHTML = list[i];
+    $flipContainer.append($square);
+    $square.append($frontTile);
     $square.append($tile);
-    gameBoard.append($square);
+    gameBoard.append($flipContainer);
   };
 };
 setCards();
@@ -67,10 +73,13 @@ document.addEventListener('click', function(e) {
 
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
-    timeElapsed.style.visibility = 'visible';
+    // timeElapsed.style.visibility = 'visible';
 
     let showTile = e.target.firstChild;
-    showTile.style.visibility = 'visible';
+    // showTile.style.visibility = 'visible';
+    showTile.parentNode.classList.add('active');
+    showTile.parentNode.parentNode.classList.add('active');
+    // console.log(showTile);
     openCards.push(selected);
   }
   cardHandler();
@@ -106,15 +115,22 @@ function cardHandler(e) {
   setTimeout(() => {
 
     if (openCards.length > 1) {
-      if (openCards[0].firstChild.innerHTML === openCards[1].firstChild.innerHTML) {
+      console.log(openCards);
+      if (openCards[0].childNodes[1].innerHTML === openCards[1].childNodes[1].innerHTML) {
         ++winState;
         openCards = [];
         if (winState === 8) {
           winStateHandler();
         };
     } else {
-        openCards[0].firstChild.style.visibility = 'hidden';
-        openCards[1].firstChild.style.visibility = 'hidden';
+        // openCards[0].firstChild.style.visibility = 'hidden';
+        // openCards[1].firstChild.style.visibility = 'hidden';
+        openCards[0].classList.remove('active');
+        openCards[0].parentNode.classList.remove('active');
+
+        openCards[1].classList.remove('active');
+        openCards[1].parentNode.classList.remove('active');
+        console.log(openCards[0]);
         openCards = [];
       };
 

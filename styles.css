@@ -40,14 +40,11 @@ header h1 {
   margin-right: 120px;
   text-transform: uppercase;
   visibility: hidden;
-  /* display: none; */
 }
 
 #restart-btn {
   text-transform: uppercase;
-  /* padding: 10px; */
   width: 80px;
-  /* border-radius: 0; */
   outline: none;
 }
 
@@ -64,10 +61,46 @@ header h1 {
   width: 24px;
   margin: 0;
   padding: 0;
-  visibility: visible;
+  /* visibility: visible; */
   color: gold;
 }
 
+.flip-container {
+  perspective: 1000px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: .5s ease;
+}
+
+.active {
+  transform: rotateY(180deg);
+  display: inline;
+}
+
+
+.front,
+.back {
+  backface-visibility: hidden;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.front {
+  z-index: 2;
+  transform: rotateY(180deg);
+}
+
+.back {
+  transform: rotateY(-180deg);
+}
 
 /*
 Main section
@@ -106,13 +139,13 @@ main {
 
 .square i {
   /* margin: auto; */
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   font-size: 80px;
 }
 
 .material-icons {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 /*
