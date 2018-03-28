@@ -50,9 +50,9 @@ shuffle(list);
 function setCards() {
   for (var i = 0; i < list.length; i++) {
     let $square = document.createElement('div');
-    $square.classList.add('square');
+    // $square.classList.add('square', 'front');
     let $tile = document.createElement('i');
-    $tile.classList.add('material-icons');
+    // $tile.classList.add('material-icons', 'back');
     $tile.innerHTML = list[i];
     $square.append($tile);
     gameBoard.append($square);
@@ -74,7 +74,6 @@ document.addEventListener('click', function(e) {
     openCards.push(selected);
   }
   cardHandler();
-
 }, false);
 
 function startTime() {
@@ -93,6 +92,9 @@ function winStateHandler() {
 
 function timeHandler() {
   let sec = initSec % 60;
+  if (sec < 10) {
+    sec = `0${sec}`;
+  }
   let min = parseInt(initSec / 60);
 
   timeElapsed.innerHTML = `time: ${min}:${sec}`;
