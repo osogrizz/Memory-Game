@@ -92,7 +92,7 @@ function startTime() {
 function winStateHandler() {
   clearInterval(timeInterval);
   totalTime.innerHTML = `total ${timeElapsed.innerHTML}`;
-  totalMovesModal.innerHTML = `total moves: ${moves}`;
+  totalMovesModal.innerHTML = `total ${totalMoves.innerHTML}`;
   starRating.innerHTML = `star rating: ${stars.innerHTML}`;
   modal.style.display = 'block';
 };
