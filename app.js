@@ -92,7 +92,7 @@ function startTime() {
 function winStateHandler() {
   clearInterval(timeInterval);
   totalTime.innerHTML = `total ${timeElapsed.innerHTML}`;
-  totalMovesModal.innerHTML = `total ${totalMoves.innerHTML}`;
+  totalMovesModal.innerHTML = `total moves: ${moves}`;
   starRating.innerHTML = `star rating: ${stars.innerHTML}`;
   modal.style.display = 'block';
 };
@@ -113,25 +113,35 @@ function cardHandler(e) {
   setTimeout(() => {
 
     if (openCards.length > 1) {
+      ++moves;
+      totalMoves.innerHTML = `Moves: ${moves}`;
       console.log(openCards);
       if (openCards[0].childNodes[1].innerHTML === openCards[1].childNodes[1].innerHTML) {
+        openCards[0].classList.add('match');
+        openCards[1].classList.add('match');
+
+
         ++winState;
         openCards = [];
         if (winState === 8) {
           winStateHandler();
         };
     } else {
+        openCards[0].classList.add('no-match');
         openCards[0].classList.remove('active');
+        // openCards[0].parentNode.classList.add('no-match');
         openCards[0].parentNode.classList.remove('active');
 
+        openCards[1].classList.add('no-match');
         openCards[1].classList.remove('active');
+        // openCards[1].parentNode.classList.remove('no-match');
         openCards[1].parentNode.classList.remove('active');
         console.log(openCards[0]);
         openCards = [];
       };
 
-      ++moves;
-      totalMoves.innerHTML = `Moves: ${moves}`;
+
+
 
       if (moves == 12 ) {
         stars.removeChild(star3);
@@ -141,5 +151,5 @@ function cardHandler(e) {
         stars.removeChild(star1);
       }
     };
-  }, 2000);
+  }, 2250);
 }
