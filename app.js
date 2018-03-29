@@ -69,6 +69,7 @@ setCards();
 
 
 document.addEventListener('click', function(e) {
+  clearNoMatch();
   ++timer;
 
   let selected = e.target;
@@ -108,11 +109,18 @@ function timeHandler() {
   initSec += 1;
 };
 
+function clearNoMatch() {
+  for (var i = 0; i < tile.length; i++) {
+    tile[i].parentNode.classList.remove('shake', 'active-shake');
+  }
+}
+
 function cardHandler(e) {
   startTime();
   setTimeout(() => {
 
     if (openCards.length > 1) {
+
       ++moves;
       totalMoves.innerHTML = `Moves: ${moves}`;
       console.log(openCards);
@@ -120,28 +128,23 @@ function cardHandler(e) {
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
 
-
         ++winState;
         openCards = [];
         if (winState === 8) {
           winStateHandler();
         };
     } else {
-        openCards[0].classList.add('no-match');
+        openCards[0].parentNode.classList.add('shake', 'active-shake');
         openCards[0].classList.remove('active');
-        // openCards[0].parentNode.classList.add('no-match');
+        // openCards[0].parentNode.classList.remove('shake', 'active-shake');
         openCards[0].parentNode.classList.remove('active');
 
-        openCards[1].classList.add('no-match');
+        openCards[1].parentNode.classList.add('shake', 'active-shake');
         openCards[1].classList.remove('active');
-        // openCards[1].parentNode.classList.remove('no-match');
+        // openCards[1].parentNode.classList.remove('shake', 'active-shake');
         openCards[1].parentNode.classList.remove('active');
-        console.log(openCards[0]);
         openCards = [];
       };
-
-
-
 
       if (moves == 12 ) {
         stars.removeChild(star3);
@@ -151,5 +154,5 @@ function cardHandler(e) {
         stars.removeChild(star1);
       }
     };
-  }, 2250);
+  }, 2500);
 }
