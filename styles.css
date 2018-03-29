@@ -101,16 +101,28 @@ header h1 {
 }
 
 .match {
+  animation: bounce0.5s;
+  animation: bounce 200ms 2 linear;
+}
 
+
+@keyframes bounce {
+  0% {
+    transform: translate(0, 10px);
+  }
+  50% {
+    transform: translate(0, -10px);
+  }
+  100% {
+    transform: translate(0,0);
+  }
 }
 
 .shake {
   animation: shake 0.7s;
-}
-
-.active-shake {
   animation: shake 200ms 2 linear;
 }
+
 
 @keyframes shake {
   0% {
