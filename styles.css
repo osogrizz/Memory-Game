@@ -12,6 +12,14 @@ body {
   margin: 0;
 }
 
+button {
+  height: 22px;
+  background-color: coral;
+  color: white;
+  outline: none;
+  /* box-shadow: 5px 5px; */
+}
+
 /*
 Header section
 */
