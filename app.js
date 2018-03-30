@@ -123,10 +123,17 @@ function cardHandler(e) {
 
       ++moves;
       totalMoves.innerHTML = `Moves: ${moves}`;
-      console.log(openCards);
+
       if (openCards[0].childNodes[1].innerHTML === openCards[1].childNodes[1].innerHTML) {
+        openCards[0].style.backgroundColor = 'transparent';
         openCards[0].classList.add('match');
+        openCards[0].childNodes[0].classList.add('match');
+        openCards[0].childNodes[1].classList.add('match');
+
+        openCards[1].style.backgroundColor = 'transparent';
         openCards[1].classList.add('match');
+        openCards[1].childNodes[0].classList.add('match');
+        openCards[1].childNodes[1].classList.add('match');
 
         ++winState;
         openCards = [];
@@ -136,12 +143,10 @@ function cardHandler(e) {
     } else {
         openCards[0].parentNode.classList.add('shake', 'active-shake');
         openCards[0].classList.remove('active');
-        // openCards[0].parentNode.classList.remove('shake', 'active-shake');
         openCards[0].parentNode.classList.remove('active');
 
         openCards[1].parentNode.classList.add('shake', 'active-shake');
         openCards[1].classList.remove('active');
-        // openCards[1].parentNode.classList.remove('shake', 'active-shake');
         openCards[1].parentNode.classList.remove('active');
         openCards = [];
       };

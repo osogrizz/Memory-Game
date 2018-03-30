@@ -103,6 +103,7 @@ header h1 {
 .match {
   animation: bounce0.5s;
   animation: bounce 200ms 2 linear;
+  background-color: transparent;
 }
 
 
@@ -120,16 +121,16 @@ header h1 {
 
 .shake {
   animation: shake 0.7s;
-  animation: shake 200ms 2 linear;
+  animation: shake 100ms 3 linear;
 }
 
 
 @keyframes shake {
   0% {
-    transform: translate(8px, 0);
+    transform: translate(10px, 0);
   }
   50% {
-    transform: translate(-8px, 0);
+    transform: translate(-10px, 0);
   }
   100% {
     transform: translate(0,0);
@@ -150,7 +151,8 @@ main {
   padding-top: 20px;
   height: 500px;
   width: 450px;
-  background-color: rgba(25, 25, 25, 0.7);
+  /* background-color: rgba(25, 25, 25, 0.7); */
+  background: linear-gradient(135deg,#16deba, #7f67a5);
   border-radius: 5%;
   margin-bottom: 40px;
   /* border-collapse: collapse; */
@@ -161,7 +163,7 @@ main {
   height: 80px;
   border-radius: 5%;
   margin: 10px 10px 10px 20px;
-  background-color: skyblue;
+  background-color: rgba(45, 45, 45, 1);
   display: inline-flex;
 }
 
@@ -170,12 +172,14 @@ main {
   height: 80px;
   width: 80px;
   font-size: 80px;
+  /* color: white; */
+  background-color: skyblue;
 }
 
 
 /*
 Modal style rules
-inspired by https://codepen.io/designcouch/pen/obvKxm
+animation adapted from https://codepen.io/designcouch/pen/obvKxm
 */
 
 #modal-container {
