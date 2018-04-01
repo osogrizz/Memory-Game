@@ -137,6 +137,7 @@ function cardHandler(e) {
 
         ++winState;
         openCards = [];
+        
         if (winState === 8) {
           winStateHandler();
         };

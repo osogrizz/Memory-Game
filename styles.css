@@ -17,7 +17,6 @@ button {
   background-color: coral;
   color: white;
   outline: none;
-  /* box-shadow: 5px 5px; */
 }
 
 /*
@@ -255,3 +254,58 @@ animation adapted from https://codepen.io/designcouch/pen/obvKxm
 /*
 responsive styling
 */
+
+@media screen and (max-width: 640px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  #game-board {
+    width: 98%;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .square {
+    height: 60px;
+    width: 60px;
+    margin: 10px 5px 5px 16px;
+  }
+  .square i {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+  }
+
+  #modal-card {
+    width: 320px;
+  }
+
+}
+
+@media screen and (min-width: 641px) and (max-width: 667px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  #game-board {
+    width: 98%;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .square {
+    height: 60px;
+    width: 60px;
+    margin: 10px 10px 10px 16px;
+  }
+  .square i {
+    width: 60px;
+    height: 60px;
+    font-size: 60px;
+  }
+
+  #modal-card {
+    width: 320px;
+  }
+}
