@@ -47,6 +47,7 @@ function shuffle(array) {
 }
 shuffle(list);
 
+// Creates the HTML and classes and adds the shuffled list.
 function setCards() {
   for (var i = 0; i < list.length; i++) {
     let $flipContainer = document.createElement('div');
@@ -67,11 +68,14 @@ function setCards() {
 setCards();
 
 
-
+// Event listener is added to elements with a class of square.
+// Initial listener starts the game once a 'card' is clicked.
 document.addEventListener('click', function(e) {
+  // clears any existing noMatch classes that were added from previous attempts.
+  // increments a timer count to know when to start the timer and prevent it from being called again.
   clearNoMatch();
   ++timer;
-
+  // add classes to selected elements and populate openCards arrary to compare values.
   let selected = e.target;
   if ( e.target.classList.contains('square') ) {
     timeElapsed.style.visibility = 'visible';
@@ -84,12 +88,15 @@ document.addEventListener('click', function(e) {
   cardHandler();
 }, false);
 
+// function handles starting the game timer
 function startTime() {
   if (timer === 1) {
      timeInterval = setInterval(function() { timeHandler() },1000);
   };
 }
 
+// if there is a win state it gets the tota; time moves and current star rating.
+// Stops the timer. And displays the modal with game stats.
 function winStateHandler() {
   clearInterval(timeInterval);
   totalTime.innerHTML = `total ${timeElapsed.innerHTML}`;
@@ -98,6 +105,7 @@ function winStateHandler() {
   modal.style.display = 'block';
 };
 
+// Creates second minute values. Displays seconds correctly if under 10sec.
 function timeHandler() {
   let sec = initSec % 60;
   if (sec < 10) {
@@ -109,12 +117,15 @@ function timeHandler() {
   initSec += 1;
 };
 
+// Will clear any cards of classes for non matches allowing them to be added back if neccessary.
 function clearNoMatch() {
   for (var i = 0; i < tile.length; i++) {
     tile[i].parentNode.classList.remove('shake', 'active-shake');
   }
 }
 
+// MAin logic to check for matches. Starts the timer, tracks number of moves,
+// handles star rating based on # of moves and calls winStateHandler.
 function cardHandler(e) {
   startTime();
   setTimeout(() => {
@@ -137,7 +148,7 @@ function cardHandler(e) {
 
         ++winState;
         openCards = [];
-        
+
         if (winState === 8) {
           winStateHandler();
         };
@@ -152,12 +163,10 @@ function cardHandler(e) {
         openCards = [];
       };
 
-      if (moves == 12 ) {
+      if (moves == 15 ) {
         stars.removeChild(star3);
       } else if (moves == 25) {
         stars.removeChild(star2);
-      } else if (moves == 35) {
-        stars.removeChild(star1);
       }
     };
   }, 2500);
