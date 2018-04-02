@@ -95,7 +95,7 @@ function startTime() {
   };
 }
 
-// if there is a win state it gets the tota; time moves and current star rating.
+// if there is a win state it gets the total time, moves, and current star rating.
 // Stops the timer. And displays the modal with game stats.
 function winStateHandler() {
   clearInterval(timeInterval);
@@ -105,7 +105,7 @@ function winStateHandler() {
   modal.style.display = 'block';
 };
 
-// Creates second minute values. Displays seconds correctly if under 10sec.
+// Creates second and minute values. Displays seconds correctly if under 10sec.
 function timeHandler() {
   let sec = initSec % 60;
   if (sec < 10) {
@@ -124,7 +124,7 @@ function clearNoMatch() {
   }
 }
 
-// MAin logic to check for matches. Starts the timer, tracks number of moves,
+// Main logic to check for matches. Starts the timer, tracks number of moves,
 // handles star rating based on # of moves and calls winStateHandler.
 function cardHandler(e) {
   startTime();
